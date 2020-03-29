@@ -13,7 +13,7 @@ local METHODS = {
 }
 
 return {
-    name= "http-method-termination",
+    name = "http-method-termination",
     fields = {
         { protocols = typedefs.protocols_http },
         { config = {
@@ -22,6 +22,7 @@ return {
                 { method = { type = "string", default = "OPTIONS", one_of = METHODS, required = true } },
                 { status_code = { type = "integer", default = 204, between = { 100, 599 } } },
                 { body = { type = "string" } },
+                { location = { type = "string" } },
                 { content_type = { type = "string", default = 'application/json' } },
             } }
         }

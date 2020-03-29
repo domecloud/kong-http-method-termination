@@ -12,6 +12,9 @@ end
 function HTTPMethodHandler:access(conf)
     if kong.request.get_method() == conf.method then
         kong.response.set_header('Content-Type', conf.content_type)
+        if conf.status_code == 301 or conf.status_code == 302 then
+            kong.response.set_header('Location', conf.location)
+        end
         return kong.response.exit(conf.status_code, conf.body)
     end
 end
